@@ -2,7 +2,7 @@ import random as r
 
 import math as m
 
-rand = r.randrange(0,2 * m.pi + 1)
+rand = r.random()
 
 value = m.sin(rand) ** 2.0 + m.cos(rand) ** 2.0
 
