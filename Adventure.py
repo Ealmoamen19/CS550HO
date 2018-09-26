@@ -28,7 +28,7 @@ def Ques (num) :
     global serialf
 
     serialf = serialf + (choice * ((1/10) ** orderf)) 
-    
+
     functions(serialf)
 
 def functions (code) :
@@ -73,9 +73,17 @@ def functions (code) :
 
      randoexpo()
     
-    elif code == 1.13 :
+    elif code >= 1.13 and code < 1.131 :
 
      green()
+
+    elif code == 1.131 :
+
+     beamhand()
+
+    elif code == 1.132 :
+
+     explosion()
     
     elif code == 1.2 :
 
@@ -85,7 +93,7 @@ def functions (code) :
 
      flush()
 
-    elif code == 1.211 :
+    elif code <= 1.211 and code > 1.21 :
 
      candle()
 
@@ -101,11 +109,11 @@ def functions (code) :
 
      slam()
 
-    elif code == 1.231 :
+    elif code >= 1.231 and code < 1.232 :
 
      zombie()
 
-    elif code == 1.232 :
+    elif code >= 1.232 and code < 1.233 :
 
      hide()
 
@@ -465,8 +473,35 @@ def randoexpo () :
 
 		print("Good try but unfortunately it blows up in your face and now you're nothing but vapor.")
 
-		quit()    
+		quit()
 
+def beamhand() :
 
+	print("You're sucked into a wormhole and you find yourseld at the other side of the universe with no way back...\nYou notice the contraption floating in the middle of space, with a keypad...\nApparently there's a passcode you can use to reverse what happened.")
+
+	for i in range(2) :
+
+		pcattempt = input("passcode: ")
+
+		if pcattempt == "contraption" :
+
+			print("Well Done!\nYou're right back where you started.")
+
+			global serialf
+
+			serialf = 1
+
+			Intro()
+
+		else :
+
+			print("Attempts left:")
+
+			print (3 - (i + 1))
+
+	print("You remain floating in outer space till the end of time...")
+
+	quit()
+		
 
 Intro()
