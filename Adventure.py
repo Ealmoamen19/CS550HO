@@ -109,7 +109,7 @@ def functions (code) :
 
      slam()
 
-    elif code >= 1.231 and code < 1.232 :
+    elif code > 1.23 and code <= 1.231 :
 
      zombie()
 
