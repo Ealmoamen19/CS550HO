@@ -1,12 +1,22 @@
 import random as rand
 
-row = 20
+row = 10
 
-col = 20
+col = 10
 
 cont = 0
 
 array = []
+
+axis = []
+
+axis.append(0)
+
+axis.append(" ")
+
+for i in range(1, col + 1) :
+	
+	axis.append(i)
 
 for i in range(0, row + 2) :
 	
@@ -14,7 +24,7 @@ for i in range(0, row + 2) :
 
 count = 0
 
-mines = 100
+mines = 5
 
 while count < mines :
 
@@ -28,6 +38,8 @@ while count < mines :
 		
 		count = count + 1
 
+# Array print function
+
 def printer (jay) :
 	
 	for j in range (1, row + 1) :
@@ -39,12 +51,19 @@ def printer (jay) :
 		
 			xambia.append(jay[j][i])
 
+		if j < 10 :
+
+			print(j, end = "   ")
+
+		else :
+
+			print(j, end = "  ")
 		
 		print(*xambia)
 
-for i in range(row) :
+for i in range(row + 1) :
 
-	for j in range(col) :
+	for j in range(col + 1) :
 
 		if array[i][j] == "*" :
 
@@ -55,6 +74,8 @@ for i in range(row) :
  					if array[a][z] != "*" :
 
  						array[a][z] = array[a][z] + 1
+
+#Expansion function
 
 def bloom (arr, rows, cols) :
 
@@ -80,14 +101,6 @@ def bloom (arr, rows, cols) :
 
 			for j in range (cols - 1, cols + 2) :
 
-				print("COL:")
-
-				print(cols, rows)
-
-				print()
-
-				print(i,j)
-
 				if array[i][j] == 0 and arr[i][j] == "o" :
 
 					arr[i][j] = array[i][j] 
@@ -96,65 +109,72 @@ def bloom (arr, rows, cols) :
 
 					cont = cont + 1
 
-					printer(arr)
-
-					print()
-
 					bloom (arr, i, j)
 
 				elif array[i][j] != "*" and arr[i][j] == "o" :
 					
 					arr[i][j] = array [i][j]  
 
-printer(array)
+
 
 print("\n\n")
 
+#Dummy array
 arrayM = []
 
 for i in range(0,row + 2) :
 	
 	arrayM.append(["o"] * (col + 2))
 
-printer(arrayM)
+MinesLeft = mines
 
 cont = 0
 
 while cont < ((row * col) - mines):
 
+	print(*axis)
+
+	print()
+
+	printer(arrayM)
+
+	print("Mines Left: ")
+
+	print(MinesLeft)
+
+	print()
+
 	rowM = int(input("Row: "))
 
 	colM = int(input("Column: "))
 
-	val = array[rowM][colM]
+	flag = input("Flag? ")
 
-	if val == 0 :
+	if flag == "yes" or flag == "Yes" or flag == "y" or flag == "Y" :
 
-		bloom(arrayM, rowM, colM)
+		arrayM[rowM][colM] = "F"
+
+		MinesLeft = MinesLeft - 1
 
 	else:
 
-		arrayM[rowM][colM] = val
+		val = array[rowM][colM]
 
-	printer(arrayM)
+		if val == 0 :
 
-	cont = cont + 1
+			bloom(arrayM, rowM, colM)
 
-	if val == "*" :
+		else:
 
-		print("BOOM!\n\nGame Over.\n\n")
+			arrayM[rowM][colM] = val
 
-		quit()
+
+		cont = cont + 1
+
+		if val == "*" :
+
+			print("BOOM!\n\nGame Over.\n\n")
+
+			quit()
 
 print("You win!")
-
-
-
-
-
-
-# for i in range(row) :
-
-# 	print(*array[i])
-
-#

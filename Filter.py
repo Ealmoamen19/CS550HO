@@ -8,11 +8,14 @@ for i in range(10) :
 
 print(a)
 
-for i in range(0, len(a) - 1) :
+for i in range(0, len(a)) :
 
+	print (i)
 
-	if (int(a[i+1]) % int(a[0])) == 0 :
+	print(a[0])
 
-		a[i + 1] = 0
+	if (a[i] % a[0]) == 0 :
+
+		a[i] = 0
 
 print(a)
