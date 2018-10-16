@@ -1,12 +1,18 @@
 from PIL import Image
 
+import random
+
 imgx = 512
 imgy = 512
 
-image = Image.new("CMYK", (imgx, imgy))
+image = Image.new("RGB", (imgx, imgy))
 
-image.putpixel((0,0),(255, 0, 0, 0))
+for i in range(512) :
 
-image.save("x.jpeg", "JPEG")
+	for j in range(512) :
+		
+		image.putpixel((i,j),((i * j)%510, (i*j)%255, (i*j)%255))
+
+image.save("x.png", "PNG")
 
 print(image)
