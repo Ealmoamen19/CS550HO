@@ -6,13 +6,13 @@ xcoor = 1024.0
 
 ycoor = 1024.0
 
-xRange = [-0.4324595133463542, -0.4109293619791667]
+xRange = [-2, 2]
 
-yRange = [0.58946126302084,  0.6114247639973959]
+yRange = [-2, 2]
 
 count = 0
 
-image = Image.new("RGBA", (int(xcoor), int(ycoor)))
+image = Image.new("RGB", (int(xcoor), int(ycoor)))
 
 def melbourne(z, c) :
 
@@ -37,6 +37,7 @@ def melbourne(z, c) :
 
 		melbourne(summation, c)
 
+
 for i in range(0, int(xcoor)) :
 
 	for j in range (0, int(ycoor)) :
@@ -53,42 +54,24 @@ for i in range(0, int(xcoor)) :
 
 		color = count % 4
 
-		if color == 0 :
+		if color == 1:
 
-			image.putpixel((i,j),(count % 255 , 40, 170 - i//7 , 255))
-
-		elif color == 1:
-
-			image.putpixel((i,j),( 229, 33, count % 255, 255))
-
-			if j >= 514:
-				image.putpixel((i,j),(0,0,0, abs(j - 769)))
-
-			else:
-				image.putpixel((i,j),(0,0,0, abs(j - 259)))
+			image.putpixel((i,j),(155, 0, 0))
 
 		elif color == 2:
 
-			image.putpixel((i,j),(0 , count % 255, 255, 255))
-
-			if j >= 514:
-				image.putpixel((i,j),(0,0,0, abs(j - 769)))
-
-			else:
-				image.putpixel((i,j),(0,0,0, abs(j - 259)))
+			image.putpixel((i,j),(100, 0, 0))
 
 		elif color == 3:
 
-			image.putpixel((i,j),( 1, 19, count % 255, 255))
+			image.putpixel((i,j),(55, 0, 0))
+
+		else :
+
+			image.putpixel((i,j),(255, 0, 0))
 
 name = input("Save As: ")
-name = name + ".png"
 image.save(str(name), "PNG")
-
-
-		
-
-
 
 
 
