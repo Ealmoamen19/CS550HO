@@ -19,7 +19,7 @@
 
 # Mandelbrot 2:
 # I created a modulus based system with each modulus being colored with a screen-wide gradient that's based on the coordinates rather that the mandelbrot values.
-# The result was a modular-gradient fractal with shifting different colors.
+# The result was a modular-gradient fractal with shifting different colors. One of the moduus is left empty; transparent, and filled with another mandelbrot set.
 
 # Julia:
 # I used the same modulus system I used for the madelbrot 2, but with a different gradient. I alternated between two similar blue gradients and left one modulus transparent,
@@ -281,6 +281,8 @@ def imagery2(xRange, yRange) :
 
 			thingy = [i/(xcoor/(xRange[1] - xRange[0]))+ xRange[0], j/(ycoor/(xRange[1] - xRange[0])) + yRange[0]]
 
+			thingy2 = [i/(xcoor/(xRange4[1] - xRange4[0]))+ xRange4[0], j/(ycoor/(xRange4[1] - xRange4[0])) + yRange4[0]]
+
 			count2 = 0
 
 			melbourne([0,0], thingy)
@@ -298,6 +300,48 @@ def imagery2(xRange, yRange) :
 			elif color2 == 2:
 
 				image.putpixel((i,j),(103 , int(j//(ycoor//256)), int(i//(xcoor//256)) , 255))
+
+			elif color2 == 3:
+
+				count2 = 0
+
+				melbourne([0,0], thingy2)
+
+				color2 = count2 % 4
+
+				if color2 == 0 :
+
+					image.putpixel((i,j),(count2 % 255 , 40, 170 - int(i//(ycoor//145)) , 255))
+
+				elif color2 == 1:
+
+					#Alpha channel gradients
+
+					image.putpixel((i,j),( 229, 33, count2 % 255, 255))
+
+					if j//(xcoor/1024) >= 514:
+						image.putpixel((i,j),(0,0,0, abs(int(j/(xcoor/1024)) - 769)))
+
+					else:
+						image.putpixel((i,j),(0,0,0, abs(int(j/(xcoor/1024)) - 259)))
+
+				elif color2 == 2:
+
+					#Alpha channel gradients
+
+					image.putpixel((i,j),(0 , count2 % 255, 255, 255))
+
+					if j//(xcoor/1024) >= 514:
+						image.putpixel((i,j),(0,0,0, abs(int(j/(xcoor/1024)) - 769)))
+
+					else:
+						image.putpixel((i,j),(0,0,0, abs(int(j/(xcoor/1024)) - 259)))
+
+				elif color2 == 3:
+
+					image.putpixel((i,j),( 1, 19, count2 % 255, 255))
+
+
 
 	#Save as function
 
@@ -383,7 +427,7 @@ while checker == True :
 
 	x = input("Which Fractal would you like to print?\n\n(1) Mandelbrot 1\n(2) Mandelbrot 2\n(3) Julia\n")
 
-	res = input("Output resolution: \nexample: 1024 --> 1024 x 1024\n\n")
+	res = input("Output resolution: \nexample: 1024 --> 1024 x 1024\n")
 
 	if res.isnumeric() == True :
 
@@ -399,7 +443,7 @@ while checker == True :
 
 			checker = False
 
-			print("Generating Fractal...")
+			print("\nGenerating Fractal...")
 
 			imagery(xRange, yRange)
 
@@ -407,7 +451,7 @@ while checker == True :
 
 			checker = False
 
-			print("Generating Fractal...")
+			print("\nGenerating Fractal...")
 
 			imagery2(xRange3, yRange3)
 
@@ -415,7 +459,7 @@ while checker == True :
 
 			checker = False
 
-			print("Generating Fractal...")
+			print("\nGenerating Fractal...")
 
 			imagery3(xRange4, yRange4)
 
