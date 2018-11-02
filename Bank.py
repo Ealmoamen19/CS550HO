@@ -1,6 +1,11 @@
 import random
 
+iDBank = []
+accounts = []
+
 def randomID (length) :
+
+	global iDBank
 
 	alphaDig = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -16,11 +21,33 @@ def randomID (length) :
 
 			iD += str(random.randInt(0, 10))
 
+		iDBank.append(iD)
+
 	return iD
+
+def checkForOverlap (iD) :
+
+	for i in iDBank :
+
+		if iD == iDBank[i]:
+
+			return True
+
+	return False
+
+def checkForExist (iD) :
+
+	for i in accounts :
+
+		if accounts[i].number == iD :
+
+			return accounts[i]
+
+	return False
 
 class Bank :
 
-	def __init__ (self, firstName, lastName, pin, number, status, balance, typer) :
+	def __init__ (self, firstName, lastName, pin, balance, typer) :
 
 		self.firstName = firstName
 		self.lastName = lastName
@@ -44,14 +71,37 @@ class Bank :
 
 response = input("What would you like to do?\n\n(1) Create a Bank Account\n(2) Access your bank account\n")
 
+
+
 if response == 1:
+
+	firstName = input("First Name: ")
+
+	lastName = input("Last Name: ")
+
+	pin = input("PIN Number: ")
+
+	typer = input("What type of account would you like to open?\n(1) Checking Account\n(2) Saving Account\n\n")
+
+	accounts.append(Bank(firstName, lastName, pin, 0, typer))
 
 
 elif response == 2:
 
-	response = input("Please enter your Account Number")
+	xer = True
 
-	response2 = input("Please enter your password")
+		while xer == True :
+
+			response = input("Please enter your Account Number")
+
+			if checkForExist(response) == False :
+
+				print("Invalid iD\nTry Again")
+
+
+		response2 = input("Please enter your password")
+
+
 
 
 
