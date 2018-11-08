@@ -8,19 +8,21 @@ class Card :
 
 	def __init__ (self, suite, number) :
 
-		suites = [1, 2, 3, 4, "Diamonds", "Hearts", "Spades", "Clovers"]
+		suites = ["Diamonds", "Hearts", "Spades", "Clovers"]
 
-		self.suite = suites[suite + 3]
+		self.flipped = False
 
-		if suite >= 5 :
+		self.suite = suites[suite - 1]
+
+		if suite > 4 :
 
 			raise outOfBoundsError("Value out of bounds.")
 
-		numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, "Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
+		numbers = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"]
 
 		self.number = number
 
-		self.rank = numbers[number + 12]
+		self.rank = numbers[number - 1]
 
 		if number > 13 or number < 1 :
 
@@ -28,8 +30,14 @@ class Card :
 
 	def __str__ (self) :
 
-		return str(self.rank) + " of " + self.suite
 
+		if self.flipped == False :
+
+			return str(self.rank) + " of " + self.suite
+
+		else :
+
+			return "Flipped Card"
 
 
 
