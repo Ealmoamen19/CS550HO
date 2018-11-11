@@ -1,8 +1,14 @@
+#Started Tuesday, 11th of November, 2018
 
+#Monopoly Deal card game card library
+#Card values store all the info related to a card from its value to the type of card
+
+#Error for all out of bounds values
 class outOfBoundsError (Exception) :
-
+	
 	pass
 
+#A class to store all the data related to any money card
 class moneyCard :
 
 	def __init__(self, value) :
@@ -13,6 +19,8 @@ class moneyCard :
 
 			raise outOfBoundsError("Value out of bounds.")
 
+#A class for action cards that apply to either no-one or everyone playing the game
+
 class actionCardAll :
 
 	def __init__ (self, cat) :
@@ -21,6 +29,9 @@ class actionCardAll :
 
 		self.cat = types[cat - 1]
 
+
+#A class for action cards which are played directly towards another player, and they have a self.player attribute which denotes which player they affect
+
 class actionCardSpecific :
 
 	def __init__ (self, cat) :
@@ -28,6 +39,8 @@ class actionCardSpecific :
 		types = ["rent", "payment", "cardSwap"]
 
 		self.cat = types[cat - 1]
+
+#Buildings don't fit in with the rest of the action cards and their dynamic is different so they have their own class
 
 class buildings :
 
@@ -41,6 +54,7 @@ class buildings :
 
 		self.value = values[cat - 1]
 
+#Property cards have many detailed attributes including color, title, rent value...etc
 
 class propertyCard :
 
@@ -173,6 +187,8 @@ class propertyCard :
 			raise outOfBoundsError("Value out of bounds.")
 
 		self.title = titles[number - 1]
+
+#The card class is a general class for all cards, instances of different types of cards are stored as an attribute to the card
 
 class Card :
 

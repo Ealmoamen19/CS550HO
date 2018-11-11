@@ -6,7 +6,7 @@ import random
 
 class Deck :
 
-	def __init__ (self, stats) :
+	def __init__ (self, stats = True) :
 
 		self.deck = []
 
@@ -15,9 +15,11 @@ class Deck :
 		if self.main == True :
 
 			for i in range(1, 5) :
-				for j in range(1, 13):
+				for j in range(1, 14):
 
 					self.deck.append(Card(i, j))
+
+			self.deck.append(Card())
 
 		self.printer = ""
 
@@ -49,17 +51,16 @@ class Deck :
 
 	def drawCard (self, other) :
 
-		card = self.deck[len(self.deck) - 1]
+		card = other.deck[len(other.deck) - 1]
 
-		self.deck.remove(len(self.deck) - 1)
+		del other.deck[len(other.deck) - 1]
 
-		other.deck.append(card)
+		self.deck.append(card)
 
+	def playCard(self, card) :
 
-mainDeck = Deck(True)
+		store = self.deck[card]
+		
+		del self.deck[card]
 
-print(mainDeck)
-
-mainDeck.shuffle()
-
-print(mainDeck)
+		return store
