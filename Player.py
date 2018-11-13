@@ -1,3 +1,15 @@
+#Started: November 8 2018
+#Completed: November 13 2018
+
+#Honor Pledge: I have not given nor recieved any unauthorized aid
+
+#Sources:
+
+#Description: This is a class that holds all the player's properties and the team's properties since this game is based on teams.
+#Variables like score, rounds..etc are stored in this class
+
+#The players have to interact with cards and decks, hence, they're imported.
+
 from Deck import Deck
 
 from Card import Card
@@ -6,11 +18,11 @@ class Player :
 
 	def __init__ (self, name) :
 
+		#Each player starts with an empty hand, hence, Deck(False)
+
 		self.name = name
 
 		self.hand = Deck(False)
-
-		self.rounds = 0
 
 	def __str__ (self) :
 
@@ -24,21 +36,25 @@ class Player :
 
 		return printer
 
+	#emptyHand is used to clear the hand deck of a player
+
+	def emptyHand (self) :
+
+		self.hand = Deck(False)
+
+	#playCard is an extension of the playCard function in the deck class
+
 	def playCard (self, card) :
 
 		return self.hand.playCard(card)
 
+	#wonRound increments the amount of rounds the player's team won, and self.team refers to the team that the player belongs to
+
 	def wonRound (self) :
 
-		self.rounds += 1
+		self.team.rounds += 1
 
-	def declare (self, number = 0, suite = "NaN") :
-
-		self.number = number
-
-		suites = ["Diamonds", "Hearts", "Spades", "Clovers"]
-
-		self.suite = suites[suite]
+	#teamUp links both players to the team class they belong to
 
 	def teamUp (self, other) :
 
@@ -48,7 +64,10 @@ class Player :
 
 		return self.team
 
+
 class Team :
+
+	#Most variables in the team are changed by functions in the player 
 
 	def __init__ (self, player1, player2) :
 
@@ -59,6 +78,8 @@ class Team :
 		self.score = 0
 
 		self.challenge = False
+
+		self.rounds = 0
 
 	def __str__ (self) :
 
