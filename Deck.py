@@ -41,11 +41,17 @@ class Deck :
 
 	def shuffle (self) :
 
+		deck = self.deck
+
 		shuffled = []
 
 		for i in range(0, len(self.deck)) :
 
-			shuffled.append(random.choice(self.deck))
+			x = random.choice(deck)
+
+			shuffled.append(x)
+
+			deck.remove(x)
 
 		self.deck = shuffled
 

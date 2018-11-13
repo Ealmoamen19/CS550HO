@@ -14,7 +14,15 @@ class Player :
 
 	def __str__ (self) :
 
-		return "Name: " + self.name + "\nHand: " + str(self.hand) + "\n"
+		printer = "\nName: " + self.name + "\nHand:" 
+
+		for i in range(0, len(self.hand.deck)) :
+
+			printer += "\n"
+
+			printer += str(i + 1) + ") " + str(self.hand.deck[i])
+
+		return printer
 
 	def playCard (self, card) :
 
@@ -23,6 +31,22 @@ class Player :
 	def wonRound (self) :
 
 		self.rounds += 1
+
+	def declare (self, number = 0, suite = "NaN") :
+
+		self.number = number
+
+		suites = ["Diamonds", "Hearts", "Spades", "Clovers"]
+
+		self.suite = suites[suite]
+
+	def teamUp (self, other) :
+
+		self.team = Team(self, other)
+
+		other.team = self.team
+
+		return self.team
 
 class Team :
 
@@ -34,9 +58,13 @@ class Team :
 
 		self.score = 0
 
+		self.challenge = False
+
 	def __str__ (self) :
 
-		return str(player1) + "\n" + str(player2) + "\n"
+		return "Team:\n" + str(self.player1) + "\n" + str(self.player2) + "\n"
+
+
 
 
 
