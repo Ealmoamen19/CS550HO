@@ -432,6 +432,8 @@ def rounds (players, stage, bet, challenger) :
 
 #Pre-Initialization, setting player names
 
+print("\n\n\nWelcome to Kout :)\n\n\n")
+
 scanner = str(input ("Player 1 Name: "))
 
 player1 = Player(scanner)
