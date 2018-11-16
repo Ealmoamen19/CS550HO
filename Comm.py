@@ -6,13 +6,6 @@
 #Sources:
 #http://letzgro.net/blog/creating-ai-using-python/
 
-from Card import Card
-#Deck class
-from Deck import Deck
-#Player and team classes
-from Player import Player, Team
-
-import random
 
 suites = ["Diamonds", "Hearts", "Spades", "Clovers"]
 
@@ -24,7 +17,13 @@ class Comm :
 
 	def playCard(self) :
 
-		return self.player.hand.playCard(1)
+		if self.player.hand.deck[1].suite != "Joker" :
+
+			return self.player.hand.playCard(0)
+
+		else :
+
+			return self.player.hand.playCard(1)
 
 	def declare(self) :
 
@@ -33,6 +32,8 @@ class Comm :
 		lis = [0, 0, 0, 0]
 
 		for i in range(0, self.player.hand.deck) :
+
+			print(self.player.hand.deck[i].suite)
 
 			if self.player.hand.deck[i].suite == "Diamonds" :
 
@@ -56,11 +57,21 @@ class Comm :
 
 			if lis[i] > high :
 
-				high = lis[i]
+				high = i
 
-		return 5, high
+		return [5, high]
+
+	def commPlay(self, roundSuite) :
+
+		for i in (0, len(self.player.hand.deck)) :
+
+			if self.player.hand.deck[i].suite == suite :
+
+				return self.player.playCard(i)
+
+		return self.player.playCard(1)
 
 
-print ("I work!!")
+
 
 
