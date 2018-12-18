@@ -1,4 +1,6 @@
-# HI EYAD
+#Partner1: Eyad
+#Partner2: Anan
+
 #1-
 for i in range(5):
 	print(i)
